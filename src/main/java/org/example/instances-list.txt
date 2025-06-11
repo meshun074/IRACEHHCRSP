@@ -1,0 +1,2 @@
+src/main/java/org/example/Data/instance/10_1.json
+src/main/java/org/example/Data/instance/10_6.json

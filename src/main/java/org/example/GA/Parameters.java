@@ -1,4 +1,4 @@
 package org.example.GA;
 
-public class Parameters {
+public record Parameters(char selectionTechnique, String crossoverType, String mutationType, float mutationRate) {
 }
