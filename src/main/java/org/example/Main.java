@@ -28,7 +28,7 @@ public class Main {
             File instanceFile = new File(config.getInstance());
             instance = ReadData.read(instanceFile);
 
-            GeneticAlgorithm ga = new GeneticAlgorithm(System.currentTimeMillis(), config,2000, instance);
+            GeneticAlgorithm ga = new GeneticAlgorithm(System.currentTimeMillis(), config,600, instance);
             Chromosome bestChromosome = ga.start();
 
             assert bestChromosome != null;
