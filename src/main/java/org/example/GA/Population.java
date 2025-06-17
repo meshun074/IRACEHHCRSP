@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Random;
 
 public class Population {
-    public static ArrayList<Chromosome> initialize(int popSize, int chLength, long identity) {
+    public static ArrayList<Chromosome> initialize(int popSize, int chLength) {
         ArrayList<Integer> patients= new ArrayList<>();
         ArrayList<Integer> patientOrder;
         RouteInitializer ri;
@@ -17,7 +17,7 @@ public class Population {
         }
         for (int i = 0; i < popSize; i++) {
             patientOrder = new ArrayList<>(patients);
-            Collections.shuffle(patientOrder,new Random(identity));
+            Collections.shuffle(patientOrder);
             ri = new RouteInitializer(patientOrder,0.0);
             AssignPatients.Assign(ri, Main.instance);
             population.add(new Chromosome(ri.getCaregiversRoute(),ri.getSolutionCost()));

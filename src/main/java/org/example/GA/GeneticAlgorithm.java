@@ -64,10 +64,12 @@ public class GeneticAlgorithm {
     public Chromosome start() {
         bestChromosome = null;
         //initialize and evaluate fitness of chromosome
-        newPopulation = Population.initialize(popSize, patientLength,identity);
+        newPopulation = Population.initialize(popSize, patientLength);
 
         //Sort population
         sortPopulation(newPopulation);
+        if(patientLength>=50)
+            LocalSearch(0);
         //printing output
         performanceUpdate(newPopulation, 0);
         for (int i = 1; i <= gen; i++) {
@@ -354,8 +356,9 @@ public class GeneticAlgorithm {
             List<Callable<Void>> LSTasks = new ArrayList<>();
             Collections.shuffle(eliteRandomList);
             sortPopulation(newPopulation);
-            for (int i = 0; i < Math.min(numOfEliteSearch,eliteRandomList.size()); i++) {
-                int r = eliteRandomList.get(i);
+            int limit = generation==0?popSize:Math.min(numOfEliteSearch,eliteRandomList.size());
+            for (int i = 0; i < limit; i++) {
+                int r = generation==0?i:eliteRandomList.get(i);
                 ch = newPopulation.get(r);
                 Chromosome finalCh = ch;
                 LSTasks.add(() -> {
